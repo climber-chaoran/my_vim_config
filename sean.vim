@@ -44,6 +44,8 @@ hi String			ctermfg=darkred guifg=#C0C0C0 guibg=#505050
 hi Type				ctermfg=darkblue  guifg=#216abe gui=NONE
 hi Error			ctermfg=red guifg=Red	guibg=Black
 hi Todo				ctermfg=blue ctermbg=yellow guifg=Blue  guibg=Yellow
+hi Pmenu            ctermfg=black ctermbg=magenta guifg=black guibg=magenta
+hi Pmenusel         ctermfg=black ctermbg=yellow guifg=black guibg=yellow
 hi link IncSearch		Visual
 "hi link String			Constant
 hi link Character		Constant
