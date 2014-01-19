@@ -17,7 +17,10 @@ windows下要注意，在vimrc(_vimrc)文件中的路径如果有空格会导致
 例如 set rtp+=$VIM/vimfiles/bundle/vundle/
 环境变量VIM表示“D:\Program Files (x86)\Vim”
 
-cscope用法，先进入代码根目录
+ctags用法，在命令行下先进入代码根目录，然后执行ctags -R命令
+注意：要想使用ctags生成的tag完成自动补齐功能需要在vim中使用"cd + tags所在目录"命令切换当前目录为tags的目录（也可以在目录树里面用光标定位目录，然后输入cd命令）
+
+cscope用法，在命令行下先进入代码根目录
 linux下：
 find . -name "*.h" -o -name "*.c" -o -name "*.cc" -o -name "*.cpp" > cscope.files
 cscope -bkq -i cscope.files
@@ -31,3 +34,6 @@ cscope -bkq -i cscope.files
 （以上快捷键在_vimrc文件中配置）
 
 自动补全，按CTRL+N和CTRL+P可以弹出自动补全的窗口，如果窗口显示的慢，可以在vimrc文件中进行如下设置set complete=.,w,b,u,t   默认设置为set complete=.,w,b,u,t,i  i代表头文件，去掉会加快补全速度。
+
+添加了YouCompleteMe插件 .ycm_extra_conf.py文件需要放在工程代码的根目录
+

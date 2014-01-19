@@ -1,7 +1,14 @@
+"定义快捷键的前缀，即<Leader>
+let mapleader=";"
+
+" 禁止光标闪烁
+set gcr=a:block-blinkon0
+
 set nocompatible               " be iMproved
 filetype off                   " required!
 :set winaltkeys=menu
-cd d:/work
+"cd d:/work
+cd D:\work\qihoosandbox\QihooNativeModules\jni
 au GUIEnter * simalt ~x 
 set complete=.,w,b,u,t
 
@@ -32,8 +39,9 @@ Bundle 'cespare/vim-golang'
 Bundle 'The-NERD-tree'
 Bundle 'minibufexpl.vim'
 Bundle 'Tagbar'
-"Bundle 'Valloric/YouCompleteMe'
+Bundle 'Valloric/YouCompleteMe'
 Bundle 'EasyMotion'
+Bundle 'https://github.com/scrooloose/syntastic.git'
 
 " C++ Source Code
 set nocp incsearch
@@ -211,6 +219,9 @@ let g:DoxygenToolkit_licenseTag="lichangkun"
 set guioptions-=m " Remove menubar
 set guioptions-=T " Remove toolbar
 set guioptions-=r " remove v_scroll bar
+set guioptions-=R " remove v_scroll bar
+set guioptions-=L " remove v_scroll bar
+set guioptions-=l " remove v_scroll bar
 
 "go tagbar list function and variable in gofiles
 let g:tagbar_type_go = {
@@ -279,3 +290,81 @@ nmap <C-n> 20k
 
 let g:EasyMotion_leader_key = ';' 
 
+" 保存工作session
+set sessionoptions="blank,buffers,globals,localoptions,tabpages,sesdir,folds,help,options,resize,winpos,winsize"
+map<leader>ss :mksession! my.vim<cr> :wviminfo!my.viminfo<cr>
+map<leader>rs :source my.vim<cr> :rviminfo my.viminfo<cr>
+
+" YouCompleteMe 功能
+" 补全功能在注释中同样有效
+let g:ycm_complete_in_comments=1
+" 允许 vim 加载 .ycm_extra_conf.py 文件，不再提示
+let g:ycm_confirm_extra_conf=0
+" 开启 YCM 基于标签引擎
+let g:ycm_collect_identifiers_from_tags_files=1
+" 引入 C++ 标准库tags
+set tags+=/data/misc/software/misc./vim/stdcpp.tags
+" YCM 集成 OmniCppComplete 补全引擎，设置其快捷键
+inoremap <leader>; <C-x><C-o>
+" 补全内容不以分割子窗口形式出现，只显示补全列表
+set completeopt-=preview
+" 从第一个键入字符就开始罗列匹配项
+let g:ycm_min_num_of_chars_for_completion=1
+" 禁止缓存匹配项，每次都重新生成匹配项
+let g:ycm_cache_omnifunc=0
+" 语法关键字补全            
+let g:ycm_seed_identifiers_with_syntax=1
+" 修改对C函数的补全快捷键，默认是CTRL + space
+let g:ycm_key_invoke_completion = '<M-;>'
+
+" 在插入模式下 ALT + p = CTRL + p
+" imap <M-p> <C-p>
+" imap <M-n> <C-n>
+
+" 在插入模式下 ALT + j = 先按ESE键在按a键
+imap <M-j> <ESC>ja
+imap <M-k> <ESC>ka
+imap <M-h> <ESC>ha
+imap <M-l> <ESC>la
+imap <M-o> <ESC>Oa
+
+"设置快捷键将选中文本块复制至系统剪贴板
+vnoremap<Leader>y "+y
+"设置快捷键将系统剪贴板内容粘贴至vim
+nmap<Leader>p "+p
+
+"开启实时搜索功能
+set incsearch
+"搜索时大小写不敏感
+set ignorecase
+
+"vim自身命令行模式智能补全
+set wildmenu
+
+"全屏开/关快捷键
+map<silent> <F11> :call ToggleFullscreen()<CR>
+"启动vim时自动全屏
+"autocmdVimEnter * call ToggleFullscreen()
+
+"*.cpp和*.h间切换
+nmap<Leader>ch :A<CR>
+"子窗口中显示*.cpp或*.h
+nmap<Leader>sch :AS<CR>
+
+"跳转到定义处
+"nmap<Leader>gd <C-]>
+
+"库信息参考
+"启用:Man命令查看各类man信息
+source$VIMRUNTIME/ftplugin/man.vim
+"定义:Man命令查看各类man信息的快捷键
+nmap<Leader>man :Man 3 <cword><CR>
+
+"设置快捷键实现一键编译及运行
+nmap<Leader>m :!rm -rf main<CR>:wa<CR>:make<CR><CR>:cw<CR>
+nmap<Leader>g :!rm -rfmain<CR>:wa<CR>:make<CR><CR>:cw<CR>:!./main<CR>
+
+"使用Grep.vim插件在工程内全局查找，设置快捷键。快捷键速记法：searchin project
+nnoremap<Leader>sp :Grep -ir<CR><CR><CR>
+"使用Grep.vim插件在工程内全局查找，设置快捷键。快捷键速记法：searchin buffer
+nnoremap<Leader>sb :GrepBuffer -ir<CR><CR>
