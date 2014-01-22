@@ -1,14 +1,17 @@
-"定义快捷键的前缀，即<Leader>
+﻿"定义快捷键的前缀，即<Leader>
 let mapleader=";"
 
 " 禁止光标闪烁
 set gcr=a:block-blinkon0
 
+"显示隐藏文件
+let NERDTreeShowHidden=1
+
 set nocompatible               " be iMproved
 filetype off                   " required!
 :set winaltkeys=menu
 "cd d:/work
-cd D:\work\qihoosandbox\QihooNativeModules\jni
+cd D:\work\git\qihoosandbox\QihooNativeModules\jni
 au GUIEnter * simalt ~x 
 set complete=.,w,b,u,t
 
@@ -296,8 +299,9 @@ map<leader>ss :mksession! my.vim<cr> :wviminfo!my.viminfo<cr>
 map<leader>rs :source my.vim<cr> :rviminfo my.viminfo<cr>
 
 " YouCompleteMe 功能
-" 补全功能在注释中同样有效
+" 补全功能在注释、字符串中同样有效
 let g:ycm_complete_in_comments=1
+let g:ycm_complete_in_strings=1
 " 允许 vim 加载 .ycm_extra_conf.py 文件，不再提示
 let g:ycm_confirm_extra_conf=0
 " 开启 YCM 基于标签引擎
@@ -311,11 +315,13 @@ set completeopt-=preview
 " 从第一个键入字符就开始罗列匹配项
 let g:ycm_min_num_of_chars_for_completion=1
 " 禁止缓存匹配项，每次都重新生成匹配项
-let g:ycm_cache_omnifunc=0
+let g:ycm_cache_omnifunc=1
 " 语法关键字补全            
 let g:ycm_seed_identifiers_with_syntax=1
 " 修改对C函数的补全快捷键，默认是CTRL + space
 let g:ycm_key_invoke_completion = '<M-;>'
+" 设置转到定义处的快捷键
+nmap <M-f> :YcmCompleter GoToDefinitionElseDeclaration <C-R>=expand("<cword>")<CR><CR>
 
 " 在插入模式下 ALT + p = CTRL + p
 " imap <M-p> <C-p>

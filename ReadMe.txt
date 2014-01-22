@@ -37,3 +37,4 @@ cscope -bkq -i cscope.files
 
 添加了YouCompleteMe插件 .ycm_extra_conf.py文件需要放在工程代码的根目录
 
+修改了powerline插件的配色文件default.vim，在.vim\bundle\vim-powerline\autoload\Powerline\Colorschemes目录下
