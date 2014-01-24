@@ -40,7 +40,7 @@ call Pl#Hi#Allocate({
     \
 	\ 'pink'           : 128,
 	\ 'darkpink'       : 127,
-	\ })
+	\ }) 
 
 let g:Powerline#Colorschemes#default#colorscheme = Pl#Colorscheme#Init([
 	\ Pl#Hi#Segments(['SPLIT'], {
